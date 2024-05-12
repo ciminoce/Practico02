@@ -1,4 +1,6 @@
-﻿namespace Practico02.Shared
+﻿using System.Globalization;
+
+namespace Practico02.Shared
 {
     public static class ConsoleExtensions
     {
@@ -63,13 +65,13 @@
                 }
             }
         }
-        public static double ReadDouble(string message)
+        public static double ReadDouble(string message, CultureInfo culture)
         {
             while (true)
             {
                 Console.Write(message);
                 string? input = Console.ReadLine();
-                if (double.TryParse(input, out double result))
+                if (double.TryParse(input, NumberStyles.Float, culture, out double result))
                 {
                     return result;
                 }
@@ -80,13 +82,13 @@
             }
         }
 
-        public static double ReadDouble(string message, int min, int max)
+        public static double ReadDouble(string message, CultureInfo culture, int min, int max)
         {
             while (true)
             {
                 Console.Write(message);
                 string? input = Console.ReadLine();
-                if (double.TryParse(input, out double result))
+                if (double.TryParse(input, NumberStyles.Float, culture, out double result))
                 {
                     if (result >= min && result <= max)
                     {

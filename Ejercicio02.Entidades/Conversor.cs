@@ -1,4 +1,6 @@
-﻿namespace Ejercicio02.Entidades
+﻿using System.Text.RegularExpressions;
+
+namespace Ejercicio02.Entidades
 {
     public static class Conversor
     {
@@ -12,6 +14,29 @@
             return Convert.ToInt32(numeroBinario, 2);
         }
 
+        public static bool EsBinarioRegex(string numero)
+        {
+            /*
+             * Este patrón busca una cadena que cumpla con las siguientes condiciones:
+
+                ^: Indica el inicio de la cadena.
+                [01]+: Busca uno o más dígitos que sean 0 o 1. El [01] especifica un dígito que puede ser 0 o 1, y el + indica que ese patrón debe aparecer al menos una vez.
+                $: Indica el final de la cadena.
+             */
+            return Regex.IsMatch(numero, "^[0-1]+$");
+        }
+
+        public static bool EsHexaRegex(string numero)
+        {
+            /*
+             * Esta expresión regular busca una cadena que cumpla con las siguientes condiciones:
+
+                ^: Indica el inicio de la cadena.
+                [0-9a-fA-F]+: Busca uno o más caracteres que pueden ser dígitos del 0 al 9 o letras de la A a la F (mayúsculas o minúsculas).
+                $: Indica el final de la cadena.
+             */
+            return Regex.IsMatch(numero, "^[0-9,a-f,A-F]+$");
+        }
         public static bool EsBinario(string numero)
         {
             foreach (char digito in numero)
